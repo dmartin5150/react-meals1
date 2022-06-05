@@ -1,0 +1,10 @@
+.mainHeader {
+  position:fixed;
+  top:0;
+  left:0;
+  display:flex;
+  justify-content:space-between;
+  height:3.5rem;
+  width:100vh;
+  background-color: rgb(148, 18, 18);
+}
