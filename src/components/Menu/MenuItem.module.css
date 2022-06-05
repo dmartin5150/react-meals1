@@ -1,0 +1,85 @@
+
+.menu-item {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu-description {
+  padding:0.5rem;
+  text-align:left;
+  margin:0;
+}
+
+
+
+
+
+.menu-description p {
+  margin: 0.2rem 0;
+  padding:0;
+}
+
+.meal-name {
+  font-weight:800;
+}
+
+.meal-description {
+  font-style: italic;
+}
+
+.meal-price {
+  color:rgb(148, 18, 18);
+  font-weight:bold;
+}
+
+
+.menu-actions {
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items:center;
+  width:8rem;
+  margin-top: 0.3rem;
+}
+
+.menu-actions label {
+  font-weight:800;
+  text-align:left;
+  margin-right:0.3rem;
+}
+
+.menu-actions input {
+  font:inherit;
+  width:2.3rem;
+  height:1.2rem;
+  border:1px solid #ccc;
+  padding:0rem;
+  /* margin-left:0.3rem; */
+  padding-left:0.5rem;
+  
+}
+
+.menu-actions input:focus {
+  outline:none;
+}
+
+.menu-actions button {
+  padding:0.2rem 1.5rem;
+  background-color:rgb(148, 18, 18);
+  color:white;
+  margin:0.5rem 0;
+  border: 1px solid rgb(148, 18, 18);
+  border-radius:30px;
+  /* font-size:0.7rem; */
+  font:inherit;
+  font-weight:bold;
+}
+.menu-actions button:hover,
+.menu-actions button:active {
+  background-color:rgb(98, 22, 22);
+  border-color:rgb(98, 22, 22);
+}
+
+

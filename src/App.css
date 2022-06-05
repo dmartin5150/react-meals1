@@ -18,6 +18,12 @@
 
 }
 
+.menu {
+  position:relative;
+  width:30rem;
+  margin:0 auto;
+  top: 7rem;
+}
 
 
 
