@@ -1,0 +1,11 @@
+.meal-description {
+  background-color: rgb(58, 54, 54);
+  color:white;
+  border-radius: 12px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+  padding:0.1rem 0.5rem;
+}
+
+.meal-description p {
+  font-size:0.7rem;
+}
