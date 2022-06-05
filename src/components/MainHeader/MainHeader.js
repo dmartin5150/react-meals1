@@ -1,14 +1,15 @@
 import React from 'react';
-import classes from './Header.module.css';
+import classes from './MainHeader.module.css';
+import CartHeaderButton from '../CartHeaderButton/CartHeaderButton';
 
 const MainHeader = (props) => {
   return (
-    <header className={classes.MainHeader}>
+    <header className={classes.mainHeader}>
       <section>
         <h2>React Meals</h2>
       </section>
       <nav>
-        <button>Cart</button>
+        <CartHeaderButton />
       </nav>
     </header>);
 
