@@ -9,7 +9,7 @@ const MainHeader = (props) => {
         <h2>React Meals</h2>
       </section>
       <nav>
-        <CartHeaderButton />
+        <CartHeaderButton totalItems={props.totalItems} />
       </nav>
     </header>);
 

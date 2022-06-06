@@ -31,9 +31,22 @@
   width:40rem;
   margin:0 auto;
   top: 7rem;
+  animation: 500ms linear 0s 1 slideIn;
 }
 
 
+@keyframes slideIn {
+
+  0% {
+    transform: translateY(+10%);
+    opacity:20%;
+  }
+
+  100% {
+    transform: tranlateY(0);
+    opacity:100%;
+  }
+}
 
 
 /* .App-logo {

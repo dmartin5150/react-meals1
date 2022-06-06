@@ -26,6 +26,7 @@ const DUMMY_MEALS = [
 ];
 
 const getMeals =() => {
+  // let meals = DUMMY_MEALS.map((meal,count) => ({...meal,count:1}))
   return DUMMY_MEALS;
 }
 export default getMeals;
