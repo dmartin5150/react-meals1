@@ -4,7 +4,6 @@ import Card from "../UI/Card/Card";
 import MenuItem from "./MenuItem";
 
 const Menu = (props) => {
-  console.log("meal = ", props.meals);
   return (
     <Card className={classes["menu-items"]}>
       <ul>

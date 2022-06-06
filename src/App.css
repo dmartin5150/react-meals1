@@ -4,10 +4,18 @@
   background-position: center;
   background-size:cover;
   height:40vh;
-  width:100vw;
+  width:100%;
+  max-width:1280px;
   background-color: black;
   padding:1rem;
   margin: 3.5rem auto;
+}
+
+.cart-items {
+  width:6rem;
+  top:6rem;
+  margin:0 auto;
+
 }
 
 .meal-description {
@@ -20,7 +28,7 @@
 
 .menu {
   position:relative;
-  width:30rem;
+  width:40rem;
   margin:0 auto;
   top: 7rem;
 }
