@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './MainHeader.module.css';
-import CartHeaderButton from '../CartHeaderButton/CartHeaderButton';
+import React from "react";
+import classes from "./MainHeader.module.css";
+import CartHeaderButton from "../CartHeaderButton/CartHeaderButton";
 
 const MainHeader = (props) => {
   return (
@@ -9,9 +9,13 @@ const MainHeader = (props) => {
         <h2>React Meals</h2>
       </section>
       <nav>
-        <CartHeaderButton totalItems={props.totalItems} />
+        <CartHeaderButton
+          totalItems={props.totalItems}
+          onShowCart={props.onShowCart}
+          onHideCart={props.onHideCart}
+        />
       </nav>
-    </header>);
-
-}
+    </header>
+  );
+};
 export default MainHeader;

@@ -5,6 +5,19 @@ import CartItem from "./CartItem";
 
 const CartItems = (props) => {
   console.log("items: ", props.items);
+
+
+  const orderCartHandler = (event) => {
+    event.preventDefault();
+    console.log('Placing Order');
+  }
+
+  const hideCartHandler = (event) => {
+    event.preventDefault();
+    props.onHideCart();
+  }
+
+
   return (
     <Card className={classes["cart-items"]}>
       <ul>
@@ -17,10 +30,10 @@ const CartItems = (props) => {
         <p>${props.total}</p>
       </div>
       <div className={classes['cart-items__actions']}>
-        <button type="button" className={classes["cart-items__close"]}>
+        <button type="button" className={classes["cart-items__close"]} onClick={hideCartHandler}>
           Close
         </button>
-        <button type="button" className={classes["cart-items__order"]}>
+        <button type="button" className={classes["cart-items__order"]} onClick={orderCartHandler}>
           Order
         </button>
       </div>

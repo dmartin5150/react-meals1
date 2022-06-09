@@ -5,8 +5,12 @@ const MenuItem = (props) => {
 
   const submitCartHandler = (event)=> {
     event.preventDefault();
-    console.log(event.target[0].id);
-    props.onAddItem(event.target[0].value);
+    if (!props.meal.count) {
+      props.meal.count = +event.target[0].value;
+    } else {
+      props.meal.count += +event.target[0].value;
+    }
+    props.onAddItem(event.target[0].value, props.meal);
   };
 
 

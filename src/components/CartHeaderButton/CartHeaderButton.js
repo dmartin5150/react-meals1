@@ -4,8 +4,14 @@ import image from "../../images/shoppingCart.png";
 
 const CartHeaderButton = (props) => {
   
+  const showCartHandler = (event) => {
+    event.preventDefault();
+    props.onShowCart();
+  }
+
+
   return (
-    <a className={classes["cartHeader-button"]} href="/">
+    <a className={classes["cartHeader-button"]} href="/" onClick={showCartHandler}>
       <div className={classes["cartHeader-image"]}>
         <img src={image} alt="shopping cart"></img>
       </div>

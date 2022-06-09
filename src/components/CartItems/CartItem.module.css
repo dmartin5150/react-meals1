@@ -68,3 +68,17 @@
   border-color:rgb(148, 18, 18);
   color:white;
 }
+
+
+@keyframes slideCartIn {
+
+  0% {
+    transform: translateY(-10%);
+    opacity:20%;
+  }
+
+  100% {
+    transform: tranlateY(0);
+    opacity:100%;
+  }
+}

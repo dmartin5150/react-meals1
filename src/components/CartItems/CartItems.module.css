@@ -4,9 +4,15 @@
   padding:1rem 0.5rem;
   width:20rem;
   text-align:center;
-  top: 50%;
+  top: 5rem;
+  left:50%;
+  margin-left: -10rem;
+  /* margin-right: auto;  */
+  /* left: 15rem; */
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%); */
+  animation: 500ms linear 0s 1 slideCartIn;
 }
 
 .cart-items ul {
@@ -63,5 +69,19 @@
   background-color:rgb(92, 19, 19);
 }
 
+
+
+@keyframes slideCartIn {
+
+  0% {
+    transform: translateY(-10%);
+    opacity:20%;
+  }
+
+  100% {
+    transform: tranlateY(0);
+    opacity:100%;
+  }
+}
 
 
