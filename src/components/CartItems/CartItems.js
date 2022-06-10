@@ -3,8 +3,10 @@ import classes from "./CartItems.module.css";
 import Card from "../UI/Card/Card";
 import CartItem from "./CartItem";
 
+
+
 const CartItems = (props) => {
-  console.log("items: ", props.items);
+  // console.log("items: ", props.items);
 
 
   const orderCartHandler = (event) => {
@@ -21,7 +23,7 @@ const CartItems = (props) => {
   return (
     <Card className={classes["cart-items"]}>
       <ul>
-        {props.items.map((item) => {
+        {props.filteredMeals.map((item) => {
           return <CartItem item={item} key={item.id} />;
         })}
       </ul>

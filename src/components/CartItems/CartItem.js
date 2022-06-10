@@ -13,8 +13,8 @@ const CartItem = (props) => {
       </div>
     </div>
     <div className={classes["cart-item__actions"]}>
-      <p>-</p>
-      <p>+</p>
+      <button>-</button>
+      <button>+</button>
     </div>
   </li>
     )

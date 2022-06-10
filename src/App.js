@@ -21,15 +21,11 @@ const reduceMeals = (state, updatedMeal) => {
 };
 
 function App() {
-  // let meals = getMeals();
-
-  const items = [
-    { id: 1, name: "Sushi", price: 22.99, count: 1 },
-    { id: 2, name: "Schnitzel", price: 16.5, count: 1 },
-  ];
 
   const [totalCartItems, setTotalCartItems] = useState(0);
+  const [filteredMeals, setFilteredMeals] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const addTotalCartItemsHandler = (totalItems, newMeal) => {
     setTotalCartItems((prevItems) => {
@@ -39,8 +35,10 @@ function App() {
     dispatchMeal(newMeal);
   };
 
-  const showCart = () => {
+  const showCart = (filteredMeals, totalPrice) => {
     setShowModal(true);
+    setFilteredMeals(filteredMeals)
+    setTotalPrice(totalPrice);
   };
 
   const hideCart = () => {
@@ -59,7 +57,7 @@ function App() {
         )}
       {showModal &&
         ReactDOM.createPortal(
-          <CartItems items={items} total={88.99} onHideCart={hideCart} />,
+          <CartItems total={totalPrice} filteredMeals={filteredMeals} onHideCart={hideCart} />,
           document.getElementById("modal-root")
         )}
       {/* <Backdrop />
@@ -70,6 +68,7 @@ function App() {
         totalItems={totalCartItems}
         onShowCart={showCart}
         onHideCart={hideCart}
+        meals={meals}
       />
       <div className="meal-description">
         <MealsDescription />

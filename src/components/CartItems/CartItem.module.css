@@ -52,7 +52,7 @@
   font-size:1rem;
 }
 
-.cart-item__actions p {
+.cart-item__actions button {
   text-align:center;
   border:1px solid #ccc;
   width:2rem;
@@ -62,8 +62,8 @@
   font-weight:bold;
 }
 
-.cart-item__actions p:hover,
-.cart-item__actions p:active {
+.cart-item__actions button:hover,
+.cart-item__actions button:active {
   background-color: rgb(148, 18, 18);
   border-color:rgb(148, 18, 18);
   color:white;

@@ -75,6 +75,7 @@
   /* font-size:0.7rem; */
   font:inherit;
   font-weight:bold;
+  cursor:pointer;
 }
 .menu-actions button:hover,
 .menu-actions button:active {
