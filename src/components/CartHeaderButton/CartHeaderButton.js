@@ -9,19 +9,19 @@ const CartHeaderButton = (props) => {
 
 
 
-  const calculateTotalPrice = (cartArray) => {
-      let totalPrice = 0;
-      for (const curMeal of cartArray) {
-        totalPrice = totalPrice + curMeal.price *curMeal.count
-      }
-      return totalPrice;
-  };
+  // const calculateTotalPrice = (cartArray) => {
+  //     let totalPrice = 0;
+  //     for (const curMeal of cartArray) {
+  //       totalPrice = totalPrice + curMeal.price *curMeal.count
+  //     }
+  //     return totalPrice;
+  // };
 
   const showCartHandler = (event) => {
     event.preventDefault();
     const filteredMeals = filterMeals();
-    const totalPrice = calculateTotalPrice(filteredMeals);
-    props.onShowCart(filteredMeals,totalPrice);
+    // const totalPrice = calculateTotalPrice(filteredMeals);
+    props.onShowCart(filteredMeals);
   };
 
   return (

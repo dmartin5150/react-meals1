@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 import MealsDescription from "./components/MealsDescripton/MealsDescription";
@@ -21,7 +21,6 @@ const reduceMeals = (state, updatedMeal) => {
 };
 
 function App() {
-
   const [totalCartItems, setTotalCartItems] = useState(0);
   const [filteredMeals, setFilteredMeals] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -32,13 +31,51 @@ function App() {
       const newTotal = prevItems + +totalItems;
       setTotalCartItems(newTotal);
     });
+
     dispatchMeal(newMeal);
   };
 
-  const showCart = (filteredMeals, totalPrice) => {
+
+
+
+  const getFilteredMeals = () => {
+      setFilteredMeals((prevFilteredMeals)=> {
+        return prevFilteredMeals.filter(meal => meal.count && meal.count > 0);
+      })
+  } 
+
+
+
+
+  const removeCartItemHandler = (newMeal) => {
+    setTotalCartItems((prevItems) => {
+      setTotalCartItems(prevItems - 1);
+    });
+    dispatchMeal(newMeal);
+    getFilteredMeals();
+  }
+
+  useEffect(()=>{
+    let totalPrice = 0;
+    for (const curMeal of filteredMeals) {
+      totalPrice = totalPrice + curMeal.price *curMeal.count
+    }
+    setTotalPrice(totalPrice.toFixed(2));
+  },[filteredMeals])
+
+
+  const addCartItemHandler = (newMeal) => {
+    setTotalCartItems((prevItems) => {
+      setTotalCartItems(prevItems + 1);
+    });
+    dispatchMeal(newMeal);
+    getFilteredMeals();
+  }
+
+
+  const showCart = (filteredMeals) => {
     setShowModal(true);
-    setFilteredMeals(filteredMeals)
-    setTotalPrice(totalPrice);
+    setFilteredMeals(filteredMeals);
   };
 
   const hideCart = () => {
@@ -57,7 +94,14 @@ function App() {
         )}
       {showModal &&
         ReactDOM.createPortal(
-          <CartItems total={totalPrice} filteredMeals={filteredMeals} onHideCart={hideCart} />,
+          <CartItems
+            total={totalPrice}
+            totalCartItems={totalCartItems}
+            filteredMeals={filteredMeals}
+            onHideCart={hideCart}
+            onaddCartItem={addCartItemHandler}
+            onRemoveCartItem={removeCartItemHandler}
+          />,
           document.getElementById("modal-root")
         )}
       {/* <Backdrop />
