@@ -36,16 +36,11 @@ function App() {
   };
 
 
-
-
   const getFilteredMeals = () => {
       setFilteredMeals((prevFilteredMeals)=> {
         return prevFilteredMeals.filter(meal => meal.count && meal.count > 0);
       })
   } 
-
-
-
 
   const removeCartItemHandler = (newMeal) => {
     setTotalCartItems((prevItems) => {
@@ -95,8 +90,8 @@ function App() {
       {showModal &&
         ReactDOM.createPortal(
           <CartItems
+            totalItems={totalCartItems}
             total={totalPrice}
-            totalCartItems={totalCartItems}
             filteredMeals={filteredMeals}
             onHideCart={hideCart}
             onaddCartItem={addCartItemHandler}

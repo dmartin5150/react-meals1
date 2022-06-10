@@ -10,8 +10,6 @@ const CartItems = (props) => {
     console.log("Placing Order");
   };
 
-
-
   const hideCartHandler = (event) => {
     event.preventDefault();
     props.onHideCart();
