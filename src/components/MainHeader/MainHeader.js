@@ -10,11 +10,8 @@ const MainHeader = (props) => {
       </section>
       <nav>
         <CartHeaderButton
-          filteredMeals ={props.filteredMeals}
-          totalItems={props.totalItems}
           onShowCart={props.onShowCart}
           onHideCart={props.onHideCart}
-          meals={props.meals}
         />
       </nav>
     </header>

@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import classes from "./CartHeaderButton.module.css";
 import image from "../../images/shoppingCart.png";
+import CartContext from "../../store/cart-context";
 
 const CartHeaderButton = (props) => {
 
-
+  const cartCtx = useContext(CartContext);
 
 
   const showCartHandler = (event) => {
     event.preventDefault();
-    props.onShowCart(props.filteredMeals);
+    props.onShowCart(cartCtx.filteredMeals);
   };
 
   return (
@@ -23,7 +24,7 @@ const CartHeaderButton = (props) => {
       </div>
       Your Cart
       <div className={classes["cartHeader-count"]}>
-        <p>{props.totalItems}</p>
+        <p>{cartCtx.totalCartItems}</p>
       </div>
     </a>
   );

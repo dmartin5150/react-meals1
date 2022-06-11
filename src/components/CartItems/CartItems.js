@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import classes from "./CartItems.module.css";
 import Card from "../UI/Card/Card";
 import CartItem from "./CartItem";
+import CartContext from "../../store/cart-context";
 
 const CartItems = (props) => {
+
+  const cartCtx = useContext(CartContext);
+
   const orderCartHandler = (event) => {
     event.preventDefault();
     console.log("Placing Order");
@@ -17,11 +21,9 @@ const CartItems = (props) => {
   return (
     <Card className={classes["cart-items"]}>
       <ul>
-        {props.filteredMeals.map((item) => {
+        {cartCtx.filteredMeals.map((item) => {
           return (
             <CartItem
-              onAddCartItem={props.onaddCartItem}
-              onRemoveCartItem={props.onRemoveCartItem}
               item={item}
               key={item.id}
             />
@@ -29,11 +31,11 @@ const CartItems = (props) => {
         })}
       </ul>
       <div className={classes["cart-items__total"]}>
-        {props.filteredMeals.length === 0 && <p>No Items in Cart</p>}
-        {props.filteredMeals.length !== 0 && (
+        {cartCtx.filteredMeals.length === 0 && <p>No Items in Cart</p>}
+        {cartCtx.filteredMeals.length !== 0 && (
           <React.Fragment>
             <p>Total Amount</p>
-            <p>${props.total}</p>
+            <p>${cartCtx.totalPrice}</p>
           </React.Fragment>
         )}
       </div>

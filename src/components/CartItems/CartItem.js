@@ -1,20 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classes from './CartItem.module.css';
+import CartContext from '../../store/cart-context';
 
 const CartItem = (props) => {
+
+  const cartCtx = useContext(CartContext);
 
   const removeItem = (event) => {
     event.preventDefault();
     const curMeal = {...props.item};
     curMeal.count = curMeal.count- 1;
-    props.onRemoveCartItem(curMeal);
+    cartCtx.removeCartItemHandler(curMeal);
   }
 
   const addItem = (event)=> {
     event.preventDefault();
     const curMeal = {...props.item};
     curMeal.count = curMeal.count + 1;
-    props.onAddCartItem(curMeal);
+    cartCtx.addCartItemHandler(curMeal);
   }
 
 

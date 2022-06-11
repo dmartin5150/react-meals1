@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classes from './MenuItem.module.css';
+import CartContext from '../../store/cart-context';
 
 const MenuItem = (props) => {
+
+  const cartCtx = useContext(CartContext);
 
   const submitCartHandler = (event)=> {
     event.preventDefault();
@@ -10,7 +13,7 @@ const MenuItem = (props) => {
     } else {
       props.meal.count += +event.target[0].value;
     }
-    props.onAddItem(event.target[0].value, props.meal);
+    cartCtx.addTotalCartItemsHandler(event.target[0].value, props.meal);
   };
 
 
