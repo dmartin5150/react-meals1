@@ -38,10 +38,8 @@ const reduceCart = (prevCart, action ) => {
     return {totalItems:newTotal, meals:newMeals};
   }
   if (action.type === 'AddCartItem') {
-    console.log('Meal:', action.newMeal);
     const newTotal = prevCart.totalItems  + 1;
     const newMeals = updateMeals(action.newMeal,prevCart.meals);
-    console.log('new meals ', newMeals);
     return {totalItems:newTotal, meals:newMeals};
   }
   return initializeCart();
