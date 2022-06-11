@@ -3,18 +3,13 @@ import classes from "./CartHeaderButton.module.css";
 import image from "../../images/shoppingCart.png";
 
 const CartHeaderButton = (props) => {
-  const filterMeals = () => {
-    return props.meals.filter((meal) => meal.count && meal.count > 0);
-  };
 
 
 
 
   const showCartHandler = (event) => {
     event.preventDefault();
-    const filteredMeals = filterMeals();
-    // const totalPrice = calculateTotalPrice(filteredMeals);
-    props.onShowCart(filteredMeals);
+    props.onShowCart(props.filteredMeals);
   };
 
   return (

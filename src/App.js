@@ -25,29 +25,30 @@ function App() {
   const [filteredMeals, setFilteredMeals] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [meals, dispatchMeal] = useReducer(reduceMeals, getMeals());
+
 
   const addTotalCartItemsHandler = (totalItems, newMeal) => {
     setTotalCartItems((prevItems) => {
       const newTotal = prevItems + +totalItems;
       setTotalCartItems(newTotal);
     });
-
     dispatchMeal(newMeal);
   };
 
 
-  const getFilteredMeals = () => {
-      setFilteredMeals((prevFilteredMeals)=> {
-        return prevFilteredMeals.filter(meal => meal.count && meal.count > 0);
+  useEffect(() => {
+      setFilteredMeals(()=> {
+        const curMeals = [...meals];
+        return curMeals.filter(meal => meal.count && meal.count > 0);
       })
-  } 
+  },[meals,totalCartItems]); 
 
   const removeCartItemHandler = (newMeal) => {
     setTotalCartItems((prevItems) => {
       setTotalCartItems(prevItems - 1);
     });
     dispatchMeal(newMeal);
-    getFilteredMeals();
   }
 
   useEffect(()=>{
@@ -64,13 +65,11 @@ function App() {
       setTotalCartItems(prevItems + 1);
     });
     dispatchMeal(newMeal);
-    getFilteredMeals();
   }
 
 
   const showCart = (filteredMeals) => {
     setShowModal(true);
-    setFilteredMeals(filteredMeals);
   };
 
   const hideCart = () => {
@@ -78,7 +77,7 @@ function App() {
     setShowModal(false);
   };
 
-  const [meals, dispatchMeal] = useReducer(reduceMeals, getMeals());
+  
 
   return (
     <section className="App">
@@ -104,6 +103,7 @@ function App() {
         <CartItems items={items} total={88.99}/>
       </div> */}
       <MainHeader
+        filteredMeals={filteredMeals}
         totalItems={totalCartItems}
         onShowCart={showCart}
         onHideCart={hideCart}
