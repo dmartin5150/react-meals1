@@ -2,68 +2,66 @@ import React, {useState, useEffect,useReducer} from 'react';
 import getMeals from "../dummyMeals/dummymeals";
 
 const CartContext = React.createContext({
-   totalCartItems: 0,
    totalPrice: 0,
-   meals:[],
    filteredMeals:[],
-   addTotalCartItemsHandler:()=>{},
-   removeCartItemHandler:()=>{},
-   addCartItemHandler: ()=>{}
+   cartItems:[],
+   dispatchCartItems: ()=>{}
+
 });
 export default CartContext;
 
 
 
-const reduceMeals = (state, updatedMeal) => {
-  for (const meal of state) {
-    if (meal.id === updatedMeal.id) {
-      meal.name = updatedMeal.name;
-      meal.description = updatedMeal.description;
-      meal.price = updatedMeal.price;
-      meal.count = updatedMeal.count;
+const updateMeals = (newMeal, meals) => {
+  const curMeals = [...meals];
+  for (const meal of curMeals) {
+    if (meal.id === newMeal.id){
+      meal.count = newMeal.count;
     }
   }
-  return state;
-};
+  return curMeals;
+}
+
+const initializeCart = () => {
+  return {totalItems: 0, meals: getMeals()}
+}
+
+const reduceCart = (prevCart, action ) => {
+  if (action.type === 'AddMenuItem') {
+    const newTotal = prevCart.totalItems + +action.newItemCount;
+    const newMeals = updateMeals(action.newMeal,prevCart.meals);
+    return {totalItems:newTotal, meals:newMeals};
+  }
+  if (action.type === 'RemoveCartItem') {
+    const newTotal = prevCart.totalItems - 1;
+    const newMeals = updateMeals(action.newMeal,prevCart.meals);
+    return {totalItems:newTotal, meals:newMeals};
+  }
+  if (action.type === 'AddCartItem') {
+    console.log('Meal:', action.newMeal);
+    const newTotal = prevCart.totalItems  + 1;
+    const newMeals = updateMeals(action.newMeal,prevCart.meals);
+    console.log('new meals ', newMeals);
+    return {totalItems:newTotal, meals:newMeals};
+  }
+  return initializeCart();
+
+}
 
 export const CartContextProvider = (props)=> {
 
   const [filteredMeals, setFilteredMeals] = useState([]);
-  const [totalCartItems, setTotalCartItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [meals, dispatchMeal] = useReducer(reduceMeals, getMeals());
+  const [cartItems, dispatchCartItems] = useReducer(reduceCart,initializeCart())
 
-
-  const addTotalCartItemsHandler = (totalItems, newMeal) => {
-    setTotalCartItems((prevItems) => {
-      const newTotal = prevItems + +totalItems;
-      setTotalCartItems(newTotal);
-    });
-    dispatchMeal(newMeal);
-  };
 
   useEffect(() => {
     setFilteredMeals(()=> {
-      const curMeals = [...meals];
+      const curMeals = [...cartItems.meals];
       return curMeals.filter(meal => meal.count && meal.count > 0);
     })
-},[meals,totalCartItems]); 
+},[cartItems]); 
 
-
-const removeCartItemHandler = (newMeal) => {
-  setTotalCartItems((prevItems) => {
-    setTotalCartItems(prevItems - 1);
-  });
-  dispatchMeal(newMeal);
-}
-
-
-const addCartItemHandler = (newMeal) => {
-  setTotalCartItems((prevItems) => {
-    setTotalCartItems(prevItems + 1);
-  });
-  dispatchMeal(newMeal);
-}
 
 
 useEffect(()=>{
@@ -76,13 +74,10 @@ useEffect(()=>{
 
 
   return(<CartContext.Provider value={{
-    totalCartItems: totalCartItems,
+    cartItems:cartItems,
     totalPrice:totalPrice,
-    meals:meals,
     filteredMeals:filteredMeals,
-    addTotalCartItemsHandler:addTotalCartItemsHandler,
-    removeCartItemHandler:removeCartItemHandler,
-    addCartItemHandler:addCartItemHandler 
+    dispatchCartItems:dispatchCartItems,
   }}>{props.children}</CartContext.Provider>)
 
 }

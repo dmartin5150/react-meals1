@@ -10,14 +10,14 @@ const CartItem = (props) => {
     event.preventDefault();
     const curMeal = {...props.item};
     curMeal.count = curMeal.count- 1;
-    cartCtx.removeCartItemHandler(curMeal);
+    cartCtx.dispatchCartItems({type:'RemoveCartItem', newMeal:curMeal});
   }
 
   const addItem = (event)=> {
     event.preventDefault();
     const curMeal = {...props.item};
     curMeal.count = curMeal.count + 1;
-    cartCtx.addCartItemHandler(curMeal);
+    cartCtx.dispatchCartItems({type:'AddCartItem', newMeal:curMeal});
   }
 
 

@@ -6,14 +6,16 @@ const MenuItem = (props) => {
 
   const cartCtx = useContext(CartContext);
 
+
   const submitCartHandler = (event)=> {
     event.preventDefault();
+    const newItemCount = event.target[0].value;
     if (!props.meal.count) {
       props.meal.count = +event.target[0].value;
     } else {
       props.meal.count += +event.target[0].value;
     }
-    cartCtx.addTotalCartItemsHandler(event.target[0].value, props.meal);
+    cartCtx.dispatchCartItems({type:'AddMenuItem', newItemCount:newItemCount, newMeal: props.meal});
   };
 
 

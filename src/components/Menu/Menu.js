@@ -11,7 +11,7 @@ const Menu = (props) => {
   return (
     <Card className={classes["menu-items"]}>
       <ul>
-        {cartCtx.meals.map((meal) => {
+        {cartCtx.cartItems.meals.map((meal) => {
           return <MenuItem meal={meal}  key={meal.id}/>;
         })}
       </ul>

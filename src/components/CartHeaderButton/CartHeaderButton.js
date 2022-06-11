@@ -24,7 +24,7 @@ const CartHeaderButton = (props) => {
       </div>
       Your Cart
       <div className={classes["cartHeader-count"]}>
-        <p>{cartCtx.totalCartItems}</p>
+        <p>{cartCtx.cartItems.totalItems}</p>
       </div>
     </a>
   );
